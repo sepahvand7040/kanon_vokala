@@ -1,0 +1,92 @@
+
+{% block erja_user %}
+
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<form class="row g-3 was-validation post-form"  action="/members/erja_user/{{mydataerja.0.id}}/{{mydataerja.0.user_send_id}}" method="post" >
+{% csrf_token %}
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">فرستنده</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+<div class="modal-body">
+<div class="col-12">
+
+<table class="table table-striped" border="1">
+<thead>
+    <tr>
+
+
+    </tr>
+  </thead>
+
+
+
+{% for x in user_show %}
+<tr>
+<td>{{ x.id }}</td>
+<td><input class="form-check-input" type="radio" name="radioNoLabel1" id="radioNoLabel1" value="{{ x.id }}" " aria-label="..."></td>
+<td>{{ x.first_name }}</td>
+<td>{{ x.last_name }}</td>
+
+
+</tr>
+{% endfor %}
+</table>
+</div>
+<input type="text" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" id="select_transfer_modal">
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-primary"   data-bs-dismiss="modal" name="btn_transfer" id="btn_transfer">انتخاب</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-8">
+<div class="col-md-8">
+<label for="button-addon1" class="form-label text-end">ارجاع به :</label>
+<button type="button" class="btn btn-outline-secondary" id="button-addon1" data-bs-toggle="modal" data-bs-target="#staticBackdrop">انتخاب</button>
+<input type="text" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" name="user_erja" id="select_transfer" required>
+</div>	
+	<div class="col-md-10">
+	<label for="validationCustom08" class="form-label">توضیحات ارجاع:</label>
+	<textarea class="form-control" id="validationCustom08" aria-label="With textarea" name="tozih" required></textarea>
+	</div>
+
+
+<button class="btn btn-primary" type="submit">ارجاع</button>
+</div>
+</form>
+{{str_result}}
+{% load static %}
+<script type="text/javascript" src="{% static 'jquery.js' %}" />
+	<script type="text/javascript">
+	window.onload = function() {
+   if (window.jQuery) {
+      alert('jQuery is loaded');
+   } else {
+      alert('jQuery is not loaded');
+	</script>
+	<script type="text/javascript">
+
+	$("#select_transfer_div").ready(function(){
+    var myButton = $("#btn_transfer");
+    var myInput = $("#radioNoLabel1");
+	var myInput2 = $("#select_transfer");
+
+
+    myButton.click(function(){
+	    var value = $("[name=radioNoLabel1]:checked").val();
+
+		myInput2.val(value);
+
+    });
+	});
+</script>
+{%endblock%}

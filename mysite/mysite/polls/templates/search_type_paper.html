@@ -1,0 +1,71 @@
+<form class="row g-3 "  action="/members/add/search/" method="post">
+{% csrf_token %}
+<div class="col-md-4">
+    <label for="validationCustom01" class="form-label text-end">نوع</label>
+    <input type="text" class="form-control text-end" id="" name="type_paper" value="" >
+    <div class="valid-feedback">
+      درسته
+    </div>
+  </div>
+  <div class="col-md-4">
+    <label for="validationCustom02" class="form-label">کد</label>
+    <input type="text" class="form-control text-end" id="" name="code_paper" value="" >
+    <div class="valid-feedback">
+      درسته
+    </div>
+  </div>
+  <div class="col-md-4">
+    <label for="validationCustom02" class="form-label">شرح</label>
+    <input type="text" class="form-control text-end" id="" name="sharh_paper" value="" >
+    <div class="valid-feedback">
+      درسته
+    </div>
+  </div>
+  <div class="col-md-4">
+    <label for="validationCustom02" class="form-label">پیشوند / پسوند</label>
+    <input type="text" class="form-control text-end" id="" name="pp_paper" value="" >
+    <div class="valid-feedback">
+      درسته
+    </div>
+  </div>
+  <div class="col-md-4">
+    <label for="validationCustom02" class="form-label">علامت اختصاری</label>
+    <input type="text" class="form-control text-end" id="" name="" value="" >
+    <div class="valid-feedback">
+      درسته
+    </div>
+  </div>
+<div class="col-12">
+<button class="btn btn-primary" type="submit">جستجو</button>
+</div>
+</br>
+</br>
+</form>
+<table class="table table-striped" border="1">
+<thead>
+    <tr>
+      <th scope="col">ویرایش</th>
+      <th scope="col">نوع نامه</th>
+      <th scope="col">کد نامه</th>
+      <th scope="col">شرح نامه</th>
+	  <th scope="col">پسوند/پیشوند</th>
+	  <th scope="col">حذف</th>
+	  
+    </tr>
+  </thead>
+
+{% for x in mydatasearch %}
+<tr>
+<td><a href="/members/update/{{ x.id }}">{{ x.id }}ویرایش</a></td>
+{{firstname }}
+<td>{{ x.type_paper }}</td>
+<td>{{ x.code_paper }}</td>
+<td>{{ x.sharh_paper }}</td>
+<td>{{ x.pp_paper }}</td>
+<td><a href="/members/delete/{{ x.id }}">حذف</a></td>
+</tr>
+{% endfor %}
+
+</table>
+
+  </div>

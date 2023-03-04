@@ -1,0 +1,89 @@
+{% extends "main.html" %}
+
+
+{% block content1 %}
+ {% load static %}
+ {% static "upload/" as upload_dir %}
+{% for x in mydatashowpaper %}
+<div class="row">
+<div class="col-3 bg-light p-3 border border-success rounded-pill border-2">کد کاربر فرستنده :{{x.firstname}} {{x.lastname}}</div>
+<div class="col-3 bg-light p-3 border border-success rounded-pill border-2 ">تاریخ دریافت :{{ x.date_deliver|date:" d /m /Y" }}</div>
+<div class="col-3 bg-light p-3 border border-success rounded-pill border-2">شماره اندیکاتور:{{ x.no_andikator }}</div>
+<div class="col-3 bg-light p-3 border border-success rounded-pill border-2">نوع نامه :{{ x.type_paper_id }}</div>
+<div class="col-3 bg-light p-3 border border-success rounded-pill border-2">تاریخ نامه :{{ x.date_paper |date:" d/ m /Y"}}</div>
+<div class="col-3 bg-light p-3 border border-success rounded-pill border-2">تاریخ اندیکاتور{{ x.date_andikator |date:" d /m /Y"}}</div>
+<div class="col-3 bg-light p-3 border border-success rounded-pill border-2">کد کاربر گیرنده :{{x.dfirstname}} {{x.dlastname}}</div>
+<div class="col-3 bg-light p-3 border border-success rounded-pill border-2">شماره نامه دریافت شده :{{ x.no_paper_deliver }}</div>
+<div class="col-3 bg-light p-3 border border-success rounded-pill border-2">طبقه بندی :{{ x.permination }}</div>
+<div class="col-9 bg-light p-3 border border-success rounded-pill border-2">موضوع :{{ x.mozo }}</div>
+<div class="col-12 bg-light p-3 border border-success rounded-pill border-2">توضیحات:{{ x.tozihat }}</div>
+</div>
+<div class="row">
+		
+		<span class=""><img class="img-fluid img-thumbnail border-info  border-5" src="{{upload_dir}}{{mydatashowpaper.0.photo_file}}"></span>
+		<span class=""><img class="img-fluid img-thumbnail border-info  border-5" src="{{upload_dir}}{{ mydatashowpaper.0.peyvast_file }}"></span>
+		
+</div>
+{% endfor %}
+
+<div class="col-12 bg-light p-3 border">
+<div class="col-12">
+	<textarea name="summer" cols="40" rows="10" id="id_summer" hidden="true"> {{ mydatashowpaper.0.content_paper|safe}}</textarea>
+	<script>
+	var settings_id_summer = {"width": "100%", "height": "480", "lang": "fa-IR", "toolbar": [["style", ["style"]], ["font", ["bold", "italic", "underline", "superscript", "subscript", "strikethrough", "clear"]], ["fontname", ["fontname"]], ["fontsize", ["fontsize"]], ["color", ["color"]], ["para", ["ul", "ol", "paragraph"]], ["height", ["height"]], ["table", ["table"]], ["insert", ["link", "picture", "video", "hr"]], ["view", ["fullscreen", "codeview"]], ["help", ["help"]]], "url": {"language": "/static/summernote/lang/summernote-fa-IR.min.js", "upload_attachment": "/summernote/upload_attachment/"}};
+	</script>
+	<style>
+	iframe.note-fullscreen {
+	  position: fixed;
+	  top: 0;
+	  left: 0;
+	  width: 100vw!important;
+	  height: 100vh!important;
+	  z-index: 4000;
+	}
+	</style>
+	<div class="summernote-div"  cols="40" rows="10" width="100%" height="480">
+	  <iframe id="id_summer_iframe" src="/summernote/editor/id_summer/" frameborder="0" width="100%" height="480"></iframe>
+	</div>
+		
+	</div>
+<div class="col-12 bg-light p-3 border border-success rounded-pill border-2">توضیحات ارجاع : {{ show_user_erja.0.tozih|safe }}</div>
+</div>
+<div class="row">
+<div class="col-12">
+<table class="table table-striped" border="1">
+<thead>
+    <tr>
+      <th scope="col">کد کاربر فرستنده</th>
+      <th scope="col">تاریخ ارجاع</th>
+      <th scope="col">تاریخ مشاهده</th>
+	  <th scope="col">کد نامه</th>
+	  <th scope="col">کاربر گیرنده</th>
+	  <th scope="col">توضیحات</th>
+      
+	  
+    </tr>
+  </thead>
+  
+
+{% for x in temp_show_paper %}
+<tr>
+<td>{{x.firstname}} {{x.lastname}}</td>
+<td>{{x.date_send|date:" d m Y"}}</td>
+<td>{{x.date_see|date:" d m Y"}}</td>
+<td>{{x.paper_erja}}</td>
+<td>{{x.dfirstname}} {{x.dlastname}}</td>
+<td>{{x.tozih}}</td>
+
+</tr>
+{% endfor %}
+</table>
+</div>
+{% block erja_user %}
+{{str_result|safe}}
+{% include 'erja_user.html' %} 
+
+{%endblock%}
+</div>
+{%endblock%}
+		

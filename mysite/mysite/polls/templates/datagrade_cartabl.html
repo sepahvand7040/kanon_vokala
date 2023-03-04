@@ -1,0 +1,67 @@
+{% extends "main.html" %}
+{% block content1 %}
+<h1>کارتابل</h1>
+<div class="row bg-light p-3 border">
+	<div class="row bg-light p-3 border">
+	   
+	    <div class="col-12">
+		<span class="border border-primary"><a  href="/members/datagrade_cartabl/{{user.id}}/1">دیده شده</a><span class="border border-danger"> {{see_not|length}}</span></span>
+		<span class="border border-secondary"><span class="border border-primary"><a  href="/members/datagrade_cartabl/{{user.id}}/0">دیده نشده</a><span class="border border-danger"> {{see_is|length}}</span></span></span>
+		<span class="border border-secondary"><span class="border border-primary"><a  href="/members/datagrade_cartabl/{{user.id}}/3">ارجاع شده</a><span class="border border-danger"> {{see_erja|length }}</span></span></span>
+		
+		</div>
+	</div>
+	<div class="row bg-light p-3 border overflow-auto">
+	<div class="col-12 bg-Secondary p-3 border">
+			<div class="col-12">
+				<table class="table table-striped" border="1">
+			<thead>
+				<tr>
+                <th scope="col">کد</th>
+	    <th scope="col">تاریخ دریافت</th>
+		 <th scope="col">شماره اندیکاتور</th>
+		  <th scope="col">نوع نامه</th>
+		  <th scope="col">تاریخ نامه</th>
+		  <th scope="col">تاریخ اندیکاتور</th>
+		  <th scope="col">گیرنده</th>
+		  <th scope="col">کد نامه</th>
+		  <th scope="col">طبقه بندی</th>
+		  <th scope="col">موضوع</th>
+		  <th scope="col">توضیحات</th>
+	  
+				</tr>
+			</thead>
+  
+  
+     
+	{%if mydata is not None%}
+		{% for x in mydata %}
+	
+			<tr>
+			
+			
+			<td>{{ x.user_send_id }}</td>
+			<td>{{ x.date_deliver |date:" Y/m/d"}}</td>
+			<td>{{ x.no_andikator }}</td>
+			<td>{{ x.type_paper_id }}</td>
+			<td>{{ x.date_paper |date:" Y/m/d" }}</td>
+			<td>{{ x.date_andikator |date:" Y/m/d" }}</td>
+			<td>{{ x.user_deliver_id }}</td>
+			<td>{{ x.no_paper_deliver }}</td>
+			<td>{{ x.permination }}</td>
+			<td>{{ x.mozo }}</td>
+			<td>{{ x.tozihat }}</td>
+			
+			<td><a href="/members/show_paper/{{ x.id }}">مشاهده</a></td>
+			</tr>
+		{% endfor %}
+	{%endif%}
+	</table>
+		</div>
+		</div>
+		</div>
+ </div>
+ 
+
+
+{% endblock %}

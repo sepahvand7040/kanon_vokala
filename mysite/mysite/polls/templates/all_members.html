@@ -1,0 +1,15 @@
+{% extends "main.html" %}
+
+{% block title %}
+  My Tennis Club - List of all members
+{% endblock %}
+
+
+{% block content1 %}
+        {{session.testsession}}
+		{% if step_ok %}
+			
+			<h1>{{user.first_name}} {{user.last_name}} </h1>
+			
+		{% endif %}
+{% endblock %}

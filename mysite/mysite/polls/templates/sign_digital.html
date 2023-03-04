@@ -1,0 +1,137 @@
+{% extends "main.html" %}
+{% block content1 %}
+
+<h1>معرفی اشخاص</h1>
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <button class="nav-link {{activpople}}" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">معرفی اشخاص</button>
+    <button class="nav-link {{activesearch}}" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">جستجو</button>
+  </div>
+</nav>
+<div class="tab-content bg-Secondary" id="nav-tabContent">
+  <div class="tab-pane fade show {{activpople}}" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+  <form class="row g-3 needs-validation"  action="/members/sign_digital/addrecord_sign_digital/" method="post" enctype="multipart/form-data">
+{% csrf_token %}
+
+	<!-- Modal -->
+<div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">گیرنده</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+<div class="modal-body">
+<div class="col">
+
+<table class="table table-striped" border="1">
+<thead>
+    <tr>
+      
+	  
+    </tr>
+  </thead>
+  
+  
+  
+{% for x in mydata %}
+<tr>
+<td>{{ x.id }}</td>
+<td><input class="form-check-input" type="radio" name="radioNoLabel3" id="radioNoLabel3" value="{{ x.id }}" ></td>
+<td>{{ x.first_name }}</td>
+<td>{{ x.last_name }}</td>
+
+
+</tr>
+{% endfor %}
+</table>
+</div>
+<input type="text" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" id="select_transfer_modal">
+      </div>
+      <div class="modal-footer">
+        
+        <button type="button" class="btn btn-primary"   data-bs-dismiss="modal" name="btn_transfer3" id="btn_transfer3">انتخاب</button>
+      </div>
+    </div>
+  </div>
+</div>
+	<div class="col-md-6 text-first">
+	<button type="button" class="btn btn-outline-secondary" id="button-addon3" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">انتخاب</button>
+	<input type="text" class="form-control" placeholder="{{ x.first_name }} {{ x.last_name }}" label="d" name="user_sign_id" id="select_transfer3" aria-label="Example text with button addon3" aria-describedby="button-addon3">
+	
+	</div>
+{% load static %}
+	<script type="text/javascript" src="{% static 'jquery.js' %}" />
+	<script type="text/javascript"> 
+	window.onload = function() {
+   if (window.jQuery) {
+      alert('jQuery is loaded');
+   } else {
+      alert('jQuery is not loaded');
+	</script>
+  <script type="text/javascript">
+	
+	$("#select_type_paper").ready(function(){
+    var myButton1= $("#btn_transfer3");
+    var myInput = $("#radioNoLabel3");
+	var myInput3 = $("#select_transfer3");
+		
+
+    myButton1.click(function(){
+	    var value = $("[name=radioNoLabel3]:checked").val();
+        
+		myInput3.val(value);
+        
+    });
+	});
+</script>
+ 
+
+		<div class="col-md-6 text-first">
+		<label for="inputGroupFile01" class="form-label">تصویر امضا</label>
+		<div class="input-group">
+		<input type="file" class="form-control " name="photo_sign" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" aria-label="انتخاب" required>
+		
+		</div>
+		</div> 
+  
+  
+<div class="col-12">
+<button class="btn btn-primary" type="submit">ثبت</button>
+</div>
+
+
+
+
+</br>
+</br>
+</form>
+<div class="col-12">
+<table class="table table-striped" border="1">
+<thead>
+    <tr>
+      <th scope="col">ویرایش</th>
+      <th scope="col">کاربر</th>
+      <th scope="col">تصویر امضا</th>
+      
+	  
+    </tr>
+  </thead>
+  
+ {% static "upload/" as upload_dir %} 
+{% for x in mydatasign %}
+<tr>
+<td><a href="/members/update/{{ x.id }}">{{ x.id }}ویرایش</a></td>
+
+<td>{{ x.user_sign_id }}</td>
+<td><img class="img-fluid img-thumbnail border-info  border-5" src="{{upload_dir}}{{x.photo_sign}}"></td>
+
+</tr>
+{% endfor %}
+</table>
+</div>
+  </div>
+  <div class="tab-pane fade show {{activesearch}}" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+{% include 'search_type_paper.html' %} 
+</div>
+{% endblock %}

@@ -1,0 +1,439 @@
+{% extends "main.html" %}
+{% block content1 %}
+
+{% load static %}
+
+	<script type="text/javascript" src="{% static 'jquery.js' %}" />
+	<script type="text/javascript"> 
+	window.onload = function() {
+   if (window.jQuery) {
+      alert('jQuery is loaded');
+   } else {
+      alert('jQuery is not loaded');
+	</script>
+	
+<h1>نامه داخلی</h1>
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <button class="nav-link {{activepaper}}" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">نامه وارده</button>
+    <button class="nav-link {{activesearch}}" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">جستجو</button>
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show {{activepaper}}" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+  <form class="row g-3 was-validated"  action="/members/enter_paper/addrecord_enter_paper/" method="post" enctype="multipart/form-data" >
+{% csrf_token %}
+  
+	  <div class="col-md-4">
+		<label for="validationCustom01" class="form-label">فرستنده</label>
+		<input type="text" class="form-control text-end" id="validationCustom01" name="user_send_id" value="{{ user.id }}"  disabled>
+		<div class="valid-feedback">
+		  درسته
+		</div>
+	  </div>
+	
+  
+  <div class="col-md-4">
+    <label for="validationCustom03" class="form-label">شماره اندیکاتور</label>
+    <input type="text" class="form-control text-end" id="validationCustom03" name="no_andikator" value="" required>
+    <div class="valid-feedback">
+      درسته
+    </div>
+  </div>
+  <script type="text/javascript"> 
+	window.onload = function() {
+   if (window.jQuery) {
+      alert('jQuery is loaded');
+   } else {
+      alert('jQuery is not loaded');
+	</script>
+  <script type="text/javascript">
+	
+	$("#select_type_paper").ready(function(){
+    var myButton1= $("#btn_transfer2");
+    var myInput = $("#radioNoLabel2");
+	var myInput3 = $("#select_transfer2");
+		
+
+    myButton1.click(function(){
+	    var value = $("[name=radioNoLabel2]:checked").val();
+        
+		myInput3.val(value);
+        
+    });
+	});
+</script>
+  
+  <div class="col-md-4">
+    <label for="button-addon2" class="form-label text-end">نوع نامه :</label>
+    <div class="input-group mb-3" id="select_type_paper">
+	<!-- Modal -->
+<div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">نوع نامه</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+<div class="modal-body">
+<div class="col-12">
+<table class="table table-striped" border="1">
+<thead>
+    <tr>
+      <th scope="col">ویرایش</th>
+      <th scope="col">نوع نامه</th>
+      <th scope="col">کد نامه</th>
+      <th scope="col">شرح نامه</th>
+	  <th scope="col">پسوند/پیشوند</th>
+	
+	  
+    </tr>
+  </thead>
+  
+  
+  
+{% for x in mydata %}
+<tr>
+
+<td><input class="form-check-input" type="radio" name="radioNoLabel2" id="radioNoLabel2" value="{{ x.type_paper }}" aria-label="ff"></td>
+<td>{{ x.type_paper }}</td>
+<td>{{ x.code_paper }}</td>
+<td>{{ x.sharh_paper }}</td>
+<td>{{ x.pp_paper }}</td>
+
+</tr>
+{% endfor %}
+</table>
+</div>
+      </div>
+      <div class="modal-footer">
+        
+        <button type="button" class="btn btn-primary"   data-bs-dismiss="modal" name="btn_transfer2" id="btn_transfer2">انتخاب</button>
+      </div>
+    </div>
+  </div>
+</div>
+	<button type="button" class="btn btn-outline-secondary" id="button-addon2" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">انتخاب</button>
+	<input type="text" class="form-control" placeholder="" name="type_paper_id" id="select_transfer2" aria-label="Example text with button addon2" aria-describedby="button-addon2"  required>
+	</div>
+    <div class="valid-feedback">
+      درسته
+    </div>
+	</div>
+{% load jalali_tags %}
+	<link rel="stylesheet" href="{% static 'admin/jquery.ui.datepicker.jalali/themes/base/jquery-ui.min.css' %}">
+	<script src="{% static 'admin/js/django_jalali.min.js' %}"></script>
+	
+	
+	
+	
+  <div class="col-md-4">
+    <label for="validationCustom04" class="form-label">تاریخ نامه : </label>
+	<input type="text" name="date_paper" value="{{jalali_join}}" placeholder="" class="jalali_date-date form-control text-end"  required id="id_date_paper" required>
+    <div class="valid-feedback">
+      درسته
+    </div>
+  </div>
+  <div class="col-md-4">
+    <label for="validationCustom05" class="form-label">تاریخ اندیکاتور :</label>
+	<input type="text" name="date_andikator" value="{{jalali_join}}" placeholder="" class="jalali_date-date form-control text-end"  required id="id_date_andikator" required>
+    <div class="valid-feedback">
+      درسته
+    </div>
+  </div>
+  <div class="col-md-4">
+    <label for="button-addon3" class="form-label text-end">گیرنده :</label>
+    <div class="input-group mb-3">
+	
+	<!-- Modal -->
+<div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">گیرنده</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+<div class="modal-body">
+<div class="col">
+
+<table class="table table-striped" border="1">
+<thead>
+    <tr>
+      
+	  
+    </tr>
+  </thead>
+  
+  
+  
+{% for x in mydatauser %}
+<tr>
+<td>{{ x.id }}</td>
+<td><input class="form-check-input" type="radio" name="radioNoLabel3" id="radioNoLabel3" value="{{x.id}}" aria-label="..."></td>
+<td>{{ x.first_name }}</td>
+<td>{{ x.last_name }}</td>
+
+
+</tr>
+{% endfor %}
+</table>
+</div>
+      </div>
+      <div class="modal-footer">
+        
+        <button type="button" class="btn btn-primary"   data-bs-dismiss="modal" name="btn_transfer3" id="btn_transfer3">انتخاب</button>
+      </div>
+    </div>
+  </div>
+</div>
+	<button type="button" class="btn btn-outline-secondary" id="button-addon3" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">انتخاب</button>
+	<input type="text" class="form-control" placeholder="" name="user_deliver_id" id="select_transfer3" aria-label="Example text with button addon3" aria-describedby="button-addon3" required>
+	</div>
+	<script type="text/javascript"> 
+	window.onload = function() {
+   if (window.jQuery) {
+      alert('jQuery is loaded');
+   } else {
+      alert('jQuery is not loaded');
+	</script>
+  <script type="text/javascript">
+	
+	$("#select_type_paper").ready(function(){
+    var myButton1= $("#btn_transfer3");
+    var myInput = $("#radioNoLabel3");
+	var myInput3 = $("#select_transfer3");
+		
+
+    myButton1.click(function(){
+	    var value = $("[name=radioNoLabel3]:checked").val();
+        
+		myInput3.val(value);
+        
+    });
+	});
+</script>
+  
+    <div class="valid-feedback">
+      درسته
+    </div>
+	</div>
+  
+  
+	<div class="col-md-4">
+	<label for="validationCustom07" class="form-label">طبقه بندی :</label>
+	<select class="form-select" aria-label="Default select example" name="permination" required>
+		<option selected value="1">عادی</option>
+		<option value="2">محرمانه</option>
+		<option value="3">فوق محرمانه</option>
+	</select>
+	</div>
+	<div class="col-md-8">
+	<label for="validationCustom08" class="form-label">موضوع نامه :</label>
+	<textarea class="form-control" id="validationCustom08" aria-label="With textarea" name="mozo" required></textarea>
+	</div>
+	<div class="col-md-12">
+	<label for="validationCustom09" class="form-label">توضیحات</label>
+	<textarea class="form-control" id="validationCustom09" aria-label="With textarea"name="tozihat"></textarea>
+	</div>
+	<div class="col-md-6 text-first">
+	<label for="inputGroupFile01" class="form-label">تصویر نامه</label>
+	<div class="input-group">
+	<input type="file" class="form-control " name="photo_paper" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" aria-label="انتخاب" required>
+	<button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon01">بارگزاری</button>
+	</div>
+	</div>
+	<div class="col-md-6">
+	<label for="inputGroupFile02" class="form-label">فایل پیوست</label>
+	<div class="input-group">
+	<input type="file" class="form-control" name="peyvast" id="inputGroupFile02" aria-describedby="inputGroupFileAddon02" aria-label="انتخاب" required>
+	<button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon02">بارگزاری</button>
+	</div>
+	</div>
+	<div class="col-12">
+	<textarea class="rtl" name="summer" cols="40" rows="10" id="id_summer" hidden="true" style="direction: rtl; ">
+	
+	
+
+	</textarea>
+	<script>
+	var settings_id_summer = {"width": "100%", "height": "580", "lang": "fa-IR", 
+		toolbar:[["style", ["style","bold", "italic", "underline", "clear"]], 
+		["font", ["bold", "italic", "underline", "superscript", "subscript", "strikethrough", "clear"]], 
+		["fontname", ["fontname"]], 
+		["fontsize", ["fontsize"]],
+        ["fontsize", ["8", '9', '10', '11', '12', '14', '18', '22','24', '36', '48' , '64', '82', '150']],		
+		["color", ["color"]], 
+		["para", ["ul", "ol", "paragraph"]], 
+		["height", ["height"]], 
+		["table", ["table"]], 
+		["insert", ["link", "picture", "video", "hr"]], 
+		["view", ["fullscreen", "codeview"]], 
+		["help", ["help"]]],
+		["table"]: [
+		['add', ['addRowDown', 'addRowUp', 'addColLeft', 'addColRight']],
+		['delete', ['deleteRow', 'deleteCol', 'deleteTable']]],
+		"url": {"language": "/static/summernote/lang/summernote-fa-IR.min.js", "upload_attachment": "/summernote/upload_attachment/"}};
+	</script>
+	<style>
+	iframe.note-fullscreen {
+	  position: fixed;
+	  top: 0;
+	  left: 0;
+	  width: 100vw!important;
+	  height: 100vh!important;
+	  z-index: 4000;
+	}
+	</style>
+	<div class="summernote-div"  cols="40" rows="10" width="100%" height="480">
+	  <iframe id="id_summer_iframe" src="/summernote/editor/id_summer/" frameborder="0" width="100%" height="480"></iframe>
+	</div>
+		
+	</div>
+	{{jalali_join}}
+<div class="col-12">
+<button class="btn btn-primary" type="submit">ثبت</button>
+</div>
+</br>
+</br>
+</form>
+{{session.testsession}}
+{% if step_ok %} 
+<div class="col-12 overflow-auto">
+<table class="table table-striped" border="1">
+<thead>
+    <tr>
+      
+	  
+    </tr>
+  </thead>
+  
+  
+
+{% for x in mydatapaper %}
+<tr>
+<td><a href="/members/update/{{ x.id }}">{{ x.id }}ویرایش</a></td>
+<td><input class="form-check-input" type="radio" name="radioNoLabel2" id="radioNoLabel2" value="{{ x.user_send_id }}" aria-label="ff"></td>
+<td>{{ x.user_send_id }}</td>
+<td>{{ x.date_deliver |date:" d m Y"}}</td>
+<td>{{ x.no_andikator }}</td>
+<td>{{ x.type_paper_id }}</td>
+<td>{{ x.date_paper |date:" d m Y"}}</td>
+<td>{{ x.date_andikator|date:" d m Y" }}</td>
+<td>{{ x.user_deliver_id }}</td>
+<td>{{ x.no_paper_deliver }}</td>
+<td>{{ x.permination }}</td>
+<td>{{ x.mozo }}</td>
+<td>{{ x.tozihat }}</td>
+<td>{{ x.photo_file }}</td>
+<td>{{ x.peyvast }}</td>
+<td></td>
+<td><a href="/members/show_paper/{{ x.id }}">مشاهده</a></td>
+</tr>
+{% endfor %}
+</table>
+</div>
+{% endif %}
+</div>
+
+
+
+<div class="tab-pane fade show {{activesearch}}" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+  <form class="row g-3 needs-validation"  action="/members/add/addrecord/" method="post">
+{% csrf_token %}
+    <div class="col-md-4">
+    <label for="button-addon1" class="form-label text-end">فرستنده :</label>
+    <div class="input-group mb-3">
+	<button class="btn btn-outline-secondary" type="button" id="button-addon1">انتخاب</button>
+	<input type="text" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+	</div>
+    <div class="valid-feedback">
+      درسته
+    </div>
+	</div>
+  <div class="col-md-4">
+    <label for="validationCustom02" class="form-label text-end">تاریخ دریافت :</label>
+    <div class="input-group mb-3">
+	<input class="form-control text-end"  type="date" id="validationCustom02" name="pp_paper" value="" required>‎‎
+	</div>
+    <div class="valid-feedback">
+      درسته
+    </div>
+  </div>
+  <div class="col-md-4">
+    <label for="validationCustom03" class="form-label">شماره اندیکاتور</label>
+    <input type="text" class="form-control text-end" id="validationCustom03" name="sharh_paper" value="" required>
+    <div class="valid-feedback">
+      درسته
+    </div>
+  </div>
+  <div class="col-md-4">
+    <label for="button-addon2" class="form-label text-end">نوع نامه :</label>
+    <div class="input-group mb-3">
+	<button class="btn btn-outline-secondary" type="button" id="button-addon2">انتخاب</button>
+	<input type="text" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon2">
+	</div>
+    <div class="valid-feedback">
+      درسته
+    </div>
+	</div>
+  <div class="col-md-4">
+    <label for="validationCustom04" class="form-label">تاریخ نامه : </label>
+	<input class="form-control text-end"  type="date" id="validationCustom04" name="pp_paper" value="" required>‎‎
+    <div class="valid-feedback">
+      درسته
+    </div>
+  </div>
+  <div class="col-md-4">
+    <label for="validationCustom05" class="form-label">تاریخ اندیکاتور :</label>
+	<input class="form-control text-end"  type="date" id="validationCustom05" name="pp_paper" value="" required>‎‎
+    <div class="valid-feedback">
+      درسته
+    </div>
+  </div>
+  <div class="col-md-4">
+    <label for="button-addon3" class="form-label text-end">گیرنده :</label>
+    <div class="input-group mb-3">
+	<button class="btn btn-outline-secondary" type="button" id="button-addon3">انتخاب</button>
+	<input type="text" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon3">
+	</div>
+    <div class="valid-feedback">
+      درسته
+    </div>
+	</div>
+  
+  <div class="col-md-4">
+    <label for="validationCustom07" class="form-label">شماره نامه وارده :</label>
+    <input type="text" class="form-control text-end" id="validationCustom06" name="" value="" required>
+    <div class="valid-feedback">
+      درسته
+    </div>
+  </div>
+	<div class="col-md-4">
+	<label for="validationCustom07" class="form-label">طبقه بندی :</label>
+	<select class="form-select" aria-label="Default select example">
+		<option selected>انتخاب طبقه بندی...</option>
+		<option value="1">عادی</option>
+		<option value="2">محرمانه</option>
+		<option value="3">فوق محرمانه</option>
+	</select>
+	</div>
+	<div class="col-md-6">
+	<label for="validationCustom08" class="form-label">موضوع نامه :</label>
+	<textarea class="form-control" id="validationCustom08" aria-label="With textarea"></textarea>
+	</div>
+	<div class="col-md-6">
+	<label for="validationCustom09" class="form-label">توضیحات</label>
+	<textarea class="form-control" id="validationCustom09" aria-label="With textarea"></textarea>
+	</div>
+	
+	
+<div class="col-12">
+<button class="btn btn-primary" type="submit">جستجو</button>
+</div>
+</br>
+</br>
+</form>
+
+</div>
+</div>
+{% endblock %}

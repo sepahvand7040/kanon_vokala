@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="{% static 'myfirst.css' %}">
+
+<body>
+
+{% for x in fruits %}
+  <h1>{{ x }}</h1>
+{% endfor %}
+
+<p>In views.py you can see what the fruits variable looks like.</p>
+
+
+<ul>
+  {% for x in mymembers %}
+    <li>{{ x.firstname }}</li>
+  {% endfor %}
+</ul>
+{% include "mymenu.html" with me="TOBIAS" sponsor="W3SCHOOLS" %}
+
+<table border='1'>
+  <tr>
+    <th>ID</th>
+    <th>Firstname</th>
+    <th>Lastname</th>
+  </tr>
+  {% for x in mydata %}
+    <tr>
+      <td>{{ x.id }}</td>
+        <td>{{ x.firstname }}</td>
+      <td>{{ x.lastname }}</td>
+    </tr>
+  {% endfor %}
+</table>
+
+
+</body>
+{% include 'footer.html' %} 
+</html>

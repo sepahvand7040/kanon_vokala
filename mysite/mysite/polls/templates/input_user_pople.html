@@ -1,0 +1,95 @@
+{% extends "main.html" %}
+{% block content1 %}
+<h1>معرفی اشخاص</h1>
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <button class="nav-link {{activpople}}" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">معرفی اشخاص</button>
+    <button class="nav-link {{activesearch}}" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">جستجو</button>
+  </div>
+</nav>
+<div class="tab-content bg-Secondary" id="nav-tabContent">
+  <div class="tab-pane fade show {{activpople}}" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+  <form class="row g-3 was-validated"  action="/members/input_user_pople/addrecord_input_user_pople/" method="post">
+{% csrf_token %}
+<div class="col-md-3">
+    <label for="validationCustom01" class="form-label text-end">نام</label>
+    <input type="text" class="form-control text-end" id="validationCustom01" name="name" value="" >
+    <div class="valid-feedback">
+      درسته
+    </div>
+  </div>
+  <div class="col-md-3">
+    <label for="validationCustom02" class="form-label">نام خوانوادگی</label>
+    <input type="text" class="form-control text-end" id="validationCustom02" name="last_name" value="" >
+    <div class="valid-feedback">
+      درسته
+    </div>
+  </div>
+  <div class="col-md-6">
+    <label for="validationCustom03" class="form-label">عنوان سازمان/شخص</label>
+    <input type="text" class="form-control text-end" id="validationCustom03" name="organ" value="" required>
+	
+    <div class="valid-feedback">
+      درسته
+    </div>
+  </div>
+  <div class="col-md-6">
+    <label for="validationCustom04" class="form-label">نماینده</label>
+    <input type="text" class="form-control text-end" id="validationCustom04" name="linker" value="" >
+    <div class="valid-feedback">
+      درسته
+    </div>
+  </div>
+	<div class="col-md-6">
+    <label for="validationCustom05" class="form-label">توضیحات</label>
+    
+	<textarea class="form-control" id="validationCustom05" aria-label="With textarea"name="tozih"></textarea>
+    <div class="valid-feedback">
+      درسته
+    </div>
+  </div>
+  
+  
+  
+<div class="col-12">
+<button class="btn btn-primary" type="submit">ثبت</button>
+</div>
+
+
+
+
+</br>
+</br>
+</form>
+<div class="col-12">
+<table class="table table-striped" border="1">
+<thead>
+    <tr>
+      <th scope="col">نام</th>
+      <th scope="col">نام خوانوادگی</th>
+      <th scope="col">عنوان سازمان/شخص</th>
+      <th scope="col">نماینده</th>
+	  <th scope="col">توضیحات</th>
+	  
+	  
+    </tr>
+  </thead>
+  
+  
+{% for x in mydata %}
+<tr>
+<td>{{ x.name }}</td>
+<td>{{ x.last_name }}</td>
+<td>{{ x.organ }}</td>
+<td>{{ x.linker }}</td>
+<td>{{ x.tozih }}</td>
+
+</tr>
+{% endfor %}
+</table>
+</div>
+  </div>
+  <div class="tab-pane fade show {{activesearch}}" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+{% include 'search_type_paper.html' %} 
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "main.html" %}
+{% block content1 %}
+<h1>ویرایش انواع نامه</h1>
+
+
+<form class="row g-3 needs-validation"  action="updaterecord/{{ mydata.id }}" method="post">
+{% csrf_token %}
+<div class="col-md-4">
+    <label for="validationCustom01" class="form-label">نوع</label>
+    <input type="text" class="form-control text-end" id="validationCustom01" name="type_paper" value="{{ mydata.type_paper }}" required>
+    <div class="valid-feedback">
+      درسته
+    </div>
+  </div>
+  <div class="col-md-4">
+    <label for="validationCustom02" class="form-label">کد</label>
+    <input type="text" class="form-control text-end" id="validationCustom02" name="code_paper" value="{{ mydata.code_paper }}" required>
+    <div class="valid-feedback">
+      درسته
+    </div>
+  </div>
+  <div class="col-md-4">
+    <label for="validationCustom02" class="form-label">شرح</label>
+    <input type="text" class="form-control text-end" id="validationCustom03" name="sharh_paper" value="{{ mydata.sharh_paper }}" required>
+    <div class="valid-feedback">
+      درسته
+    </div>
+  </div>
+  <div class="col-md-4">
+    <label for="validationCustom02" class="form-label">پیشوند / پسوند</label>
+    <input type="text" class="form-control text-end" id="validationCustom04" name="pp_paper" value="{{ mydata.pp_paper }}" required>
+    <div class="valid-feedback">
+      درسته
+    </div>
+  </div>
+  <div class="col-md-4">
+    <label for="validationCustom02" class="form-label">علامت اختصاری</label>
+    <input type="text" class="form-control text-end" id="validationCustom05" name="" value="" required>
+    <div class="valid-feedback">
+      درسته
+    </div>
+  </div>
+
+<button class="btn btn-primary" type="submit">ثبت</button>
+</form>
+{% endblock %}

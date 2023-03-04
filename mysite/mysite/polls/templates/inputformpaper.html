@@ -1,0 +1,100 @@
+{% extends "main.html" %}
+{% block content1 %}
+<h1>انواع نامه</h1>
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <button class="nav-link {{activeadd}}" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">انواع نامه</button>
+    <button class="nav-link {{activesearch}}" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">جستجو</button>
+  </div>
+</nav>
+<div class="tab-content bg-Secondary" id="nav-tabContent">
+  <div class="tab-pane fade show {{activeadd}}" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+  <form class="row g-3 needs-validation"  action="/members/add/addrecord/" method="post">
+{% csrf_token %}
+<div class="col-md-4">
+    <label for="validationCustom01" class="form-label text-end">نوع</label>
+    <input type="text" class="form-control text-end" id="validationCustom01" name="type_paper" value="" required>
+    <div class="valid-feedback">
+      درسته
+    </div>
+  </div>
+  <div class="col-md-4">
+    <label for="validationCustom02" class="form-label">کد</label>
+    <input type="text" class="form-control text-end" id="validationCustom02" name="code_paper" value="" required>
+    <div class="valid-feedback">
+      درسته
+    </div>
+  </div>
+  <div class="col-md-4">
+    <label for="validationCustom02" class="form-label">شرح</label>
+    <input type="text" class="form-control text-end" id="validationCustom03" name="sharh_paper" value="" required>
+    <div class="valid-feedback">
+      درسته
+    </div>
+  </div>
+  <div class="col-md-4">
+    <label for="validationCustom02" class="form-label">پیشوند / پسوند</label>
+    <input type="text" class="form-control text-end" id="validationCustom04" name="pp_paper" value="" required>
+    <div class="valid-feedback">
+      درسته
+    </div>
+  </div>
+
+  
+  
+  <div class="col-md-4">
+  <div class="modal fade" id="exampleModalToggle2" aria-hidden="false" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+    <label for="validationCustom02" class="form-label">علامت اختصاری</label>
+    <input type="text" class="form-control text-end" id="validationCustom05" name="" value="@validationCustom15" required>
+    <div class="valid-feedback">
+      درسته
+    </div>
+  </div>
+  </div>
+<div class="col-12">
+<button class="btn btn-primary" type="submit">ثبت</button>
+</div>
+
+
+
+
+</br>
+</br>
+</form>
+{{ user.has_perm }}
+
+<div class="col-12">
+{{datauser.id}}
+{{mydata.id}}
+<table class="table table-striped" border="1">
+<thead>
+    <tr>
+      <th scope="col">ویرایش</th>
+      <th scope="col">نوع نامه</th>
+      <th scope="col">کد نامه</th>
+      <th scope="col">شرح نامه</th>
+	  <th scope="col">پسوند/پیشوند</th>
+	  <th scope="col">حذف</th>
+	  
+    </tr>
+  </thead>
+  
+  
+{% for x in mydata %}
+<tr>
+<td><a href="/members/update/{{ x.id }}">{{ x.id }}ویرایش</a></td>
+
+<td>{{ x.type_paper }}</td>
+<td>{{ x.code_paper }}</td>
+<td>{{ x.sharh_paper }}</td>
+<td>{{ x.pp_paper }}</td>
+<td><a href="/members/delete/{{ x.id }}">حذف</a></td>
+</tr>
+{% endfor %}
+</table>
+</div>
+  </div>
+  <div class="tab-pane fade show {{activesearch}}" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+{% include 'search_type_paper.html' %} 
+</div>
+{% endblock %}
